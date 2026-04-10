@@ -130,7 +130,7 @@
   .screenshot-overlay{position:absolute;bottom:0;left:0;right:0;padding:16px 20px;background:linear-gradient(transparent,rgba(8,8,15,.9));opacity:0;transition:opacity .3s}
   .screenshot-main:hover .screenshot-overlay{opacity:1}
   .screenshot-caption{font-size:.82rem;color:var(--cyan);font-family:var(--mono)}
-  .screenshot-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .screenshot-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   .thumb{border-radius:10px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:all .2s}
   .thumb img{width:100%;aspect-ratio:16/9;object-fit:cover}
   .thumb.active,.thumb:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,.2)}
@@ -201,6 +201,7 @@
       <li><a href="#features">Features</a></li>
       <li><a href="#apps">Apps</a></li>
       <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="about.html">Origin Story</a></li>
       <li><a href="#specs">System Reqs</a></li>
       <li><a href="#download" class="nav-cta">Get D4rkzOS</a></li>
     </ul>
@@ -215,13 +216,14 @@
   <div class="hero-bg"><div class="grid-overlay"></div></div>
   <div class="particles" id="particles-container"></div>
   <div class="hero-content">
-    <div class="hero-badge">v1.0 Phantom &bull; Coming Soon</div>
+    <div class="hero-badge">v2.0 Neon Ghost &bull; Coming Soon</div>
     <h1 class="hero-title"><span class="title-d4">D4</span><span class="title-rkz">rkz</span><span class="title-os">OS</span></h1>
     <p class="hero-tagline">The Cyberpunk Linux Experience</p>
     <p class="hero-sub">Built on KDE Neon &nbsp;&bull;&nbsp; Powered by systemd-boot &nbsp;&bull;&nbsp; Zero compromises</p>
     <div class="hero-actions">
       <a href="#download" class="btn btn-primary">⬇ Download Soon</a>
       <a href="#screenshots" class="btn btn-ghost">▶ Preview Desktop</a>
+      <a href="about.html" class="btn btn-ghost">📖 Origin Story</a>
     </div>
     <div class="hero-stats">
       <div class="stat"><span class="stat-val">KDE Neon</span><span class="stat-label">Base System</span></div>
@@ -230,7 +232,9 @@
       <div class="stat-divider">|</div>
       <div class="stat"><span class="stat-val">30+</span><span class="stat-label">Pre-installed Apps</span></div>
       <div class="stat-divider">|</div>
-      <div class="stat"><span class="stat-val">v1.0</span><span class="stat-label">Phantom Edition</span></div>
+      <a href="https://drive.google.com/file/d/1tyZ5PYRR7AAwRvxKeayCjMpETuGDPSlN/view?usp=sharing" target="_blank" class="stat">
+        <span class="stat-val">v1.0</span><span class="stat-label">Phantom Edition ⬇</span>
+      </a>
     </div>
   </div>
   <div class="scroll-indicator"><div class="scroll-dot"></div></div>
@@ -254,6 +258,29 @@
     ╚═════╝      ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝  <span class="t-cyan">Theme:</span>     D4rkzOS Dark (Plasma)
                                                <span class="t-cyan">Icons:</span>     Papirus-Dark</pre></div>
         <div class="t-line"><span class="t-prompt">d4rkz@D4rkzOS</span><span class="t-sep">:</span><span class="t-path">~</span><span class="t-sym">$</span> <span class="t-cmd t-blink">_</span></div>
+      </div>
+    </div>
+    <div class="apps-panel" id="panel-changelog">
+      <div style="max-width:800px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:40px;">
+        <div style="margin-bottom:32px; border-left:3px solid var(--cyan); padding-left:20px;">
+          <h3 style="color:#fff; margin-bottom:8px;">v2.0 Neon Ghost (2026)</h3>
+          <p style="color:var(--muted); font-size:0.9rem;">The "Brand Unity" Update</p>
+          <ul style="color:var(--text); font-size:0.85rem; margin-top:12px; list-style:none;">
+            <li>⚡ <strong>New WebApps:</strong> LtM Meeting, AI Playground, and Homepage pre-installed.</li>
+            <li>🎨 <strong>Branding Fixes:</strong> Fully synchronized OS identity, Calamares, and Plasma themes.</li>
+            <li>📦 <strong>Repo Automation:</strong> Enabled Universe/Multiverse for massive app compatibility.</li>
+            <li>🚀 <strong>D4rkzOS Taskbar:</strong> Custom-pinned layout for maximum cyberpunk productivity.</li>
+          </ul>
+        </div>
+        <div style="border-left:3px solid var(--muted); padding-left:20px;">
+          <h3 style="color:#fff; margin-bottom:8px;">v1.0 Phantom (2025)</h3>
+          <p style="color:var(--muted); font-size:0.9rem;">Initial Release</p>
+          <ul style="color:var(--text); font-size:0.85rem; margin-top:12px; list-style:none;">
+            <li>🌑 Initial Cyberpunk aesthetic and dark theme.</li>
+            <li>⚡ Migration from GRUB to systemd-boot.</li>
+            <li>✨ Custom Plymouth neon logo animation.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -323,6 +350,7 @@
       <button class="tab" data-tab="office">Office</button>
       <button class="tab" data-tab="system">System</button>
       <button class="tab" data-tab="security">Security</button>
+      <button class="tab" data-tab="changelog" style="color:var(--cyan); border-color:var(--cyan)">Update Log</button>
     </div>
     <div class="apps-panel active" id="panel-browser">
       <div class="apps-grid">
@@ -373,6 +401,29 @@
         <div class="app-item"><div class="app-emoji">🔒</div><span>GUFW</span></div>
       </div>
     </div>
+    <div class="apps-panel" id="panel-changelog">
+      <div style="max-width:800px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:40px;">
+        <div style="margin-bottom:32px; border-left:3px solid var(--cyan); padding-left:20px;">
+          <h3 style="color:#fff; margin-bottom:8px;">v2.0 Neon Ghost (2026)</h3>
+          <p style="color:var(--muted); font-size:0.9rem;">The "Brand Unity" Update</p>
+          <ul style="color:var(--text); font-size:0.85rem; margin-top:12px; list-style:none;">
+            <li>⚡ <strong>New WebApps:</strong> LtM Meeting, AI Playground, and Homepage pre-installed.</li>
+            <li>🎨 <strong>Branding Fixes:</strong> Fully synchronized OS identity, Calamares, and Plasma themes.</li>
+            <li>📦 <strong>Repo Automation:</strong> Enabled Universe/Multiverse for massive app compatibility.</li>
+            <li>🚀 <strong>D4rkzOS Taskbar:</strong> Custom-pinned layout for maximum cyberpunk productivity.</li>
+          </ul>
+        </div>
+        <div style="border-left:3px solid var(--muted); padding-left:20px;">
+          <h3 style="color:#fff; margin-bottom:8px;">v1.0 Phantom (2025)</h3>
+          <p style="color:var(--muted); font-size:0.9rem;">Initial Release</p>
+          <ul style="color:var(--text); font-size:0.85rem; margin-top:12px; list-style:none;">
+            <li>🌑 Initial Cyberpunk aesthetic and dark theme.</li>
+            <li>⚡ Migration from GRUB to systemd-boot.</li>
+            <li>✨ Custom Plymouth neon logo animation.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -392,6 +443,7 @@
       <div class="thumb active" tabindex="0" data-src="assets/desktop-screenshot.png"><img src="assets/desktop-screenshot.png" alt="Desktop" loading="lazy"/></div>
       <div class="thumb" tabindex="0" data-src="assets/boot-logo.png"><img src="assets/boot-logo.png" alt="Boot logo" loading="lazy"/></div>
       <div class="thumb" tabindex="0" data-src="assets/wallpaper.png"><img src="assets/wallpaper.png" alt="Wallpaper" loading="lazy"/></div>
+      <div class="thumb" tabindex="0" data-src="assets/success.png"><img src="assets/success.png" alt="VirtualBox Successful Boot" loading="lazy"/></div>
     </div>
   </div>
 </section>
@@ -427,9 +479,32 @@
         </table>
       </div>
     </div>
+    <div class="apps-panel" id="panel-changelog">
+      <div style="max-width:800px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:40px;">
+        <div style="margin-bottom:32px; border-left:3px solid var(--cyan); padding-left:20px;">
+          <h3 style="color:#fff; margin-bottom:8px;">v2.0 Neon Ghost (2026)</h3>
+          <p style="color:var(--muted); font-size:0.9rem;">The "Brand Unity" Update</p>
+          <ul style="color:var(--text); font-size:0.85rem; margin-top:12px; list-style:none;">
+            <li>⚡ <strong>New WebApps:</strong> LtM Meeting, AI Playground, and Homepage pre-installed.</li>
+            <li>🎨 <strong>Branding Fixes:</strong> Fully synchronized OS identity, Calamares, and Plasma themes.</li>
+            <li>📦 <strong>Repo Automation:</strong> Enabled Universe/Multiverse for massive app compatibility.</li>
+            <li>🚀 <strong>D4rkzOS Taskbar:</strong> Custom-pinned layout for maximum cyberpunk productivity.</li>
+          </ul>
+        </div>
+        <div style="border-left:3px solid var(--muted); padding-left:20px;">
+          <h3 style="color:#fff; margin-bottom:8px;">v1.0 Phantom (2025)</h3>
+          <p style="color:var(--muted); font-size:0.9rem;">Initial Release</p>
+          <ul style="color:var(--text); font-size:0.85rem; margin-top:12px; list-style:none;">
+            <li>🌑 Initial Cyberpunk aesthetic and dark theme.</li>
+            <li>⚡ Migration from GRUB to systemd-boot.</li>
+            <li>✨ Custom Plymouth neon logo animation.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="specs-note">
       <span class="note-icon">⚡</span>
-      <p><strong>UEFI Required:</strong> D4rkzOS uses systemd-boot which requires UEFI firmware. Legacy BIOS systems are not supported in v1.0.</p>
+      <p><strong>UEFI Required:</strong> D4rkzOS uses systemd-boot which requires UEFI firmware.</p>
     </div>
   </div>
 </section>
@@ -440,11 +515,11 @@
     <div class="download-card">
       <div class="download-glow"></div>
       <div class="section-badge">Download</div>
-      <h2 class="download-title">D4rkzOS 1.0 Phantom</h2>
-      <p class="download-sub">The ISO is being built. Drop your email to be first to know.</p>
+      <h2 class="download-title">D4rkzOS 2.0 Neon Ghost</h2>
+      <p class="download-sub">The ISO update is building. Drop your email to be the first to grab it!</p>
       <div class="cs-icon">🚀</div>
       <p class="cs-text">ISO Build in Progress — <span class="cs-highlight">Coming Soon</span></p>
-      <p class="cs-subtext">Expected release: Q2 2025</p>
+      <p class="cs-subtext">Expected release: April 2026</p>
       <form class="waitlist-form" id="waitlist-form" novalidate>
         <input type="email" id="waitlist-email" placeholder="your@email.com" required/>
         <button type="submit" class="btn btn-primary" id="waitlist-btn">Notify Me</button>
@@ -452,9 +527,36 @@
       <p class="waitlist-note">No spam. Unsubscribe anytime.</p>
       <div class="download-features">
         <div class="dl-feat"><span>✓</span> Full ISO (~3.5 GB)</div>
-        <div class="dl-feat"><span>✓</span> SHA256 Verified</div>
+        <div class="dl-feat"><span>✓</span> Built-in Flatpak App Store</div>
         <div class="dl-feat"><span>✓</span> Live + Install Mode</div>
         <div class="dl-feat"><span>✓</span> Free Forever</div>
+      </div>
+      <div class="specs-note" style="margin-top: 28px; text-align: left; background: rgba(0,0,0,0.2);">
+        <span class="note-icon">⏱️</span>
+        <p><strong>First Boot Notice:</strong> Because the Live ISO must extract the entire cybernetic environment and all pre-installed apps directly into your RAM, the initial boot sequence may take <strong>2–3 minutes</strong>. Please be patient while the system initializes!</p>
+      </div>
+    </div>
+    <div class="apps-panel" id="panel-changelog">
+      <div style="max-width:800px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:40px;">
+        <div style="margin-bottom:32px; border-left:3px solid var(--cyan); padding-left:20px;">
+          <h3 style="color:#fff; margin-bottom:8px;">v2.0 Neon Ghost (2026)</h3>
+          <p style="color:var(--muted); font-size:0.9rem;">The "Brand Unity" Update</p>
+          <ul style="color:var(--text); font-size:0.85rem; margin-top:12px; list-style:none;">
+            <li>⚡ <strong>New WebApps:</strong> LtM Meeting, AI Playground, and Homepage pre-installed.</li>
+            <li>🎨 <strong>Branding Fixes:</strong> Fully synchronized OS identity, Calamares, and Plasma themes.</li>
+            <li>📦 <strong>Repo Automation:</strong> Enabled Universe/Multiverse for massive app compatibility.</li>
+            <li>🚀 <strong>D4rkzOS Taskbar:</strong> Custom-pinned layout for maximum cyberpunk productivity.</li>
+          </ul>
+        </div>
+        <div style="border-left:3px solid var(--muted); padding-left:20px;">
+          <h3 style="color:#fff; margin-bottom:8px;">v1.0 Phantom (2025)</h3>
+          <p style="color:var(--muted); font-size:0.9rem;">Initial Release</p>
+          <ul style="color:var(--text); font-size:0.85rem; margin-top:12px; list-style:none;">
+            <li>🌑 Initial Cyberpunk aesthetic and dark theme.</li>
+            <li>⚡ Migration from GRUB to systemd-boot.</li>
+            <li>✨ Custom Plymouth neon logo animation.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -491,8 +593,31 @@
         </ul>
       </div>
     </div>
+    <div class="apps-panel" id="panel-changelog">
+      <div style="max-width:800px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:40px;">
+        <div style="margin-bottom:32px; border-left:3px solid var(--cyan); padding-left:20px;">
+          <h3 style="color:#fff; margin-bottom:8px;">v2.0 Neon Ghost (2026)</h3>
+          <p style="color:var(--muted); font-size:0.9rem;">The "Brand Unity" Update</p>
+          <ul style="color:var(--text); font-size:0.85rem; margin-top:12px; list-style:none;">
+            <li>⚡ <strong>New WebApps:</strong> LtM Meeting, AI Playground, and Homepage pre-installed.</li>
+            <li>🎨 <strong>Branding Fixes:</strong> Fully synchronized OS identity, Calamares, and Plasma themes.</li>
+            <li>📦 <strong>Repo Automation:</strong> Enabled Universe/Multiverse for massive app compatibility.</li>
+            <li>🚀 <strong>D4rkzOS Taskbar:</strong> Custom-pinned layout for maximum cyberpunk productivity.</li>
+          </ul>
+        </div>
+        <div style="border-left:3px solid var(--muted); padding-left:20px;">
+          <h3 style="color:#fff; margin-bottom:8px;">v1.0 Phantom (2025)</h3>
+          <p style="color:var(--muted); font-size:0.9rem;">Initial Release</p>
+          <ul style="color:var(--text); font-size:0.85rem; margin-top:12px; list-style:none;">
+            <li>🌑 Initial Cyberpunk aesthetic and dark theme.</li>
+            <li>⚡ Migration from GRUB to systemd-boot.</li>
+            <li>✨ Custom Plymouth neon logo animation.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 D4rkz &middot; D4rkzOS is free software. KDE Neon and KDE Plasma are trademarks of KDE e.V.</p>
+      <p>&copy; 2026 D4rkz &middot; D4rkzOS is free software. KDE Neon and KDE Plasma are trademarks of KDE e.V.</p>
       <p class="footer-made">Made with <span>♥</span> by D4rkz</p>
     </div>
   </div>
