@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Installation Guide — D4rkzOS</title>
+<meta name="description" content="Step-by-step guide to installing D4rkzOS. From flashing the ISO to your first cyberpunk boot."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --cyan:#00E5FF;--cyan2:#00b8cc;--bg:#08080f;--bg2:#0e0e1a;--bg3:#13131f;
+    --text:#e0e0ff;--muted:#7070a0;--card:#111120;--border:rgba(0,229,255,.12);
+    --glow:rgba(0,229,255,.18);--radius:14px;--font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1140px;margin:0 auto;padding:0 24px}
+
+  /* ── NAV ── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:18px 0;transition:all .3s;background:rgba(8,8,15,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+  .nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-size:1.5rem;font-weight:900;letter-spacing:-1px}
+  .logo-d4{color:var(--cyan)}.logo-rkz{color:#fff}.logo-os{color:var(--muted);font-size:.9em}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{color:var(--muted);font-size:.9rem;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{color:var(--cyan)!important;font-weight:700!important}
+
+  /* ── HERO ── */
+  .hero-guide{padding:160px 0 80px;text-align:center;position:relative;background:radial-gradient(circle at 50% 100%, rgba(0,229,255,0.05), transparent 70%);}
+  .hero-guide h1{font-size:clamp(3rem,8vw,5rem);font-weight:900;letter-spacing:-2px;color:#fff;margin-bottom:16px}
+  .hero-guide h1 span{color:var(--cyan);text-shadow:0 0 30px rgba(0,229,255,0.3)}
+  .hero-guide p{color:var(--muted);font-size:1.2rem;max-width:600px;margin:0 auto}
+
+  /* ── STEP CONTENT ── */
+  .guide-section{padding:80px 0}
+  .step-container{display:grid;grid-template-columns:300px 1fr;gap:60px;margin-bottom:100px}
+  @media(max-width:900px){.step-container{grid-template-columns:1fr;gap:30px}}
+  
+  .step-info{position:sticky;top:120px;height:fit-content}
+  .step-num{font-family:var(--mono);color:var(--cyan);font-weight:700;font-size:0.9rem;display:flex;align-items:center;gap:10px;margin-bottom:12px;text-transform:uppercase;letter-spacing:2px}
+  .step-num::before{content:'';width:40px;height:1px;background:var(--cyan);opacity:0.5}
+  .step-title{font-size:2rem;font-weight:800;color:#fff;margin-bottom:16px;line-height:1.2}
+  .step-desc{color:var(--muted);font-size:1rem}
+
+  .step-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px;position:relative;overflow:hidden}
+  .step-card::after{content:'';position:absolute;top:0;right:0;width:100px;height:100px;background:radial-gradient(circle at 100% 0%, rgba(0,229,255,0.03), transparent 70%)}
+  
+  .instruction-list{list-style:none;display:flex;flex-direction:column;gap:32px}
+  .instruction-item{display:flex;gap:20px}
+  .ins-icon{flex-shrink:0;width:32px;height:32px;background:rgba(0,229,255,0.1);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--cyan);font-weight:700;font-size:0.9rem}
+  .ins-content h4{color:#fff;font-size:1.1rem;margin-bottom:8px}
+  .ins-content p{color:var(--muted);font-size:0.95rem;line-height:1.6}
+  .ins-content code{background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:4px;font-family:var(--mono);color:var(--cyan);font-size:0.85rem}
+
+  /* ── WARNINGS/NOTES ── */
+  .note-box{margin-top:24px;background:rgba(0,229,255,0.05);border-left:4px solid var(--cyan);padding:20px;border-radius:4px;display:flex;gap:16px;align-items:flex-start}
+  .note-box svg{flex-shrink:0;color:var(--cyan);margin-top:2px}
+  .note-text{font-size:0.9rem;color:var(--text)}
+  .note-text strong{color:var(--cyan)}
+
+  .warning-box{margin-top:24px;background:rgba(255,95,87,0.05);border-left:4px solid #ff5f57;padding:20px;border-radius:4px;display:flex;gap:16px;align-items:flex-start}
+  .warning-box svg{flex-shrink:0;color:#ff5f57;margin-top:2px}
+  .warning-text{font-size:0.9rem;color:var(--text)}
+
+  /* ── IMAGE WRAPPER ── */
+  .img-wrap{margin-top:32px;border-radius:8px;border:1px solid var(--border);overflow:hidden;background:#000}
+  .img-wrap img{width:100%;display:block}
+
+  /* ── FOOTER (Sync) ── */
+  footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px 0 32px}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+  @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
+  .footer-logo{font-size:1.8rem;font-weight:900;margin-bottom:10px}
+  .logo-d4{color:var(--cyan)}.logo-rkz{color:#fff}.logo-os{color:var(--muted);font-size:.9em}
+  .footer-tagline{color:var(--muted);font-size:.9rem;margin-bottom:6px}
+  .footer-legal{color:#444458;font-size:.78rem}
+  .footer-links h4{color:#fff;font-size:.88rem;font-weight:700;margin-bottom:16px}
+  .footer-links ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .footer-links a{color:var(--muted);font-size:.85rem;transition:color .2s}
+  .footer-links a:hover{color:var(--cyan)}
+  .footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .footer-bottom p{font-size:.78rem;color:#3a3a55}
+
+  .btn-download{display:inline-block;margin-top:20px;padding:12px 24px;background:var(--cyan);color:#000;border-radius:50px;font-weight:700;font-size:0.9rem;transition:all 0.3s}
+  .btn-download:hover{transform:translateY(-2px);box-shadow:0 0 20px rgba(0,229,255,0.4)}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-d4">D4</span><span class="logo-rkz">rkz</span><span class="logo-os">OS</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#apps">Apps</a></li>
+      <li><a href="index.html#screenshots">Screenshots</a></li>
+      <li><a href="about.html">Origin Story</a></li>
+      <li><a href="install.html" class="nav-cta">Installation</a></li>
+      <li><a href="index.html#download">Download</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero-guide">
+  <div class="container">
+    <div class="step-num">Deployment Manual</div>
+    <h1>How to Install <span>D4rkzOS</span></h1>
+    <p>A comprehensive walkthrough from initial acquisition to full cybernetic integration.</p>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    
+    <!-- STEP 1 -->
+    <div class="step-container">
+      <div class="step-info">
+        <div class="step-num">Phase 01</div>
+        <h2 class="step-title">The Acquisition</h2>
+        <p class="step-desc">Prepare your physical medium and acquire the latest system image.</p>
+      </div>
+      <div class="step-card">
+        <ul class="instruction-list">
+          <li class="instruction-item">
+            <div class="ins-icon">1</div>
+            <div class="ins-content">
+              <h4>Download the ISO</h4>
+              <p>Acquire the <code>D4rkzOS-2.0-Ghost.iso</code> (approx. 3.4GB) from our secure repository.</p>
+              <a href="https://drive.google.com/file/d/1YVz9lzOeHJnGEBEtvqw43yj6sl1TZ4dQ/view?usp=sharing" target="_blank" class="btn-download">Download v2.0 ISO</a>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <div class="ins-icon">2</div>
+            <div class="ins-content">
+              <h4>Flash to USB</h4>
+              <p>We recommend using <strong>Ventoy</strong> for multi-boot capability or <strong>Rufus</strong> (DD mode) for a dedicated drive. Ensure your drive has at least 8GB of capacity.</p>
+              <div class="note-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <div class="note-text"><strong>Recommendation:</strong> Ventoy allows you to simply drag-and-drop the ISO without re-formatting.</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-container">
+      <div class="step-info">
+        <div class="step-num">Phase 02</div>
+        <h2 class="step-title">Hardware Negotiation</h2>
+        <p class="step-desc">Configure your BIOS/UEFI to accept the new operating environment.</p>
+      </div>
+      <div class="step-card">
+        <ul class="instruction-list">
+          <li class="instruction-item">
+            <div class="ins-icon">1</div>
+            <div class="ins-content">
+              <h4>Enter Firmware Settings</h4>
+              <p>Restart your machine and tap <code>F2</code>, <code>F12</code>, <code>Del</code>, or <code>Esc</code> to enter the BIOS/UEFI menu.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <div class="ins-icon">2</div>
+            <div class="ins-content">
+              <h4>Critical Settings</h4>
+              <p>Ensure the following parameters are set:</p>
+              <ul style="margin: 12px 0 0 20px; color: var(--muted); font-size: 0.9rem;">
+                <li><strong>Boot Mode:</strong> UEFI (Required for systemd-boot)</li>
+                <li><strong>SATA Mode:</strong> AHCI</li>
+                <li><strong>Secure Boot:</strong> Disabling is recommended for the smoothest experience, though modern kernels support it.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <div class="ins-icon">3</div>
+            <div class="ins-content">
+              <h4>Initialize Live Session</h4>
+              <p>Save settings and boot from the USB. Select "Start D4rkzOS" from the boot menu. The Plymouth animation will greet you.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-container">
+      <div class="step-info">
+        <div class="step-num">Phase 03</div>
+        <h2 class="step-title">The Cybernetic Graft</h2>
+        <p class="step-desc">Running the Calamares installer to commit D4rkzOS to your drive.</p>
+      </div>
+      <div class="step-card">
+        <ul class="instruction-list">
+          <li class="instruction-item">
+            <div class="ins-icon">1</div>
+            <div class="ins-content">
+              <h4>Launch Installer</h4>
+              <p>Click the <strong>Install D4rkzOS</strong> icon on the desktop or launch it from the Application Menu.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <div class="ins-icon">2</div>
+            <div class="ins-content">
+              <h4>Partitioning Logic</h4>
+              <p>For a clean install, select <strong>Erase Disk</strong>. If you are a veteran, manual partitioning with an EFI partition mounted at <code>/boot/efi</code> is required.</p>
+              <div class="warning-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <div class="warning-text"><strong>Data Loss:</strong> Erasing the disk will destroy all existing data. Back up your identity files first.</div>
+              </div>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <div class="ins-icon">3</div>
+            <div class="ins-content">
+              <h4>Verification & Execution</h4>
+              <p>Review the summary and click <strong>Install Now</strong>. The D4rkzOS branding will cycle through features as the system is deployed.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-container">
+      <div class="step-info">
+        <div class="step-num">Phase 04</div>
+        <h2 class="step-title">Calibration</h2>
+        <p class="step-desc">Final touches to ensure your cyberdeck is peak performance.</p>
+      </div>
+      <div class="step-card">
+        <ul class="instruction-list">
+          <li class="instruction-item">
+            <div class="ins-icon">1</div>
+            <div class="ins-content">
+              <h4>First Login</h4>
+              <p>Remove the USB drive and reboot. Your customized Zsh terminal and Plasma desktop are now operational.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <div class="ins-icon">2</div>
+            <div class="ins-content">
+              <h4>Synchronize Repositories</h4>
+              <p>Open the terminal (Ctrl+Alt+T) and run the primary sync command:</p>
+              <div style="margin-top:12px; font-family:var(--mono); background:#000; padding:12px; border-radius:8px; border:1px solid var(--border)">
+                <span style="color:var(--cyan)">sudo</span> pkcon update
+              </div>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <div class="ins-icon">3</div>
+            <div class="ins-content">
+              <h4>Explore the Suite</h4>
+              <p>Browse pre-installed tools like VS Code, btop, and Kdenlive. Welcome to the grid.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><span class="logo-d4">D4</span><span class="logo-rkz">rkz</span><span class="logo-os">OS</span></div>
+        <p class="footer-tagline">The Cyberpunk Linux Experience</p>
+        <p class="footer-legal">Based on KDE Neon &middot; Free &amp; Open Source</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="index.html#apps">Apps</a></li>
+          <li><a href="index.html#screenshots">Screenshots</a></li>
+          <li><a href="about.html">Origin Story</a></li>
+          <li><a href="install.html">Installation</a></li>
+          <li><a href="index.html#download">Download</a></li>
+        </ul>
+      </div>
+      <div class="footer-info">
+        <h4>Support</h4>
+        <ul>
+          <li>GitHub Repository</li>
+          <li>Community Discord</li>
+          <li>Report a Bug</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 D4rkz &middot; D4rkzOS is free software. KDE Neon and KDE Plasma are trademarks of KDE e.V.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
